@@ -1,0 +1,28 @@
+body{
+    /* background-color: red;
+    color: #fff; */
+}
+li:last-child a {
+    background-color: #FE5F1E;
+}
+li:hover{
+     color: #FE5F1E;
+     cursor: pointer;
+     transition: all .2s linear ;
+    }
+    .hero{
+        background-color: #f8f8f8;
+    }
+    .add-to-cart{
+        transition: all .2s linear ;
+        border: 2px solid #FE5F1E;
+
+}
+.add-to-cart:hover{
+    border: none;
+    background-color: #FE5F1E;
+}
+.btn-primary{
+    background-color: #FE5F1E;
+    
+}
