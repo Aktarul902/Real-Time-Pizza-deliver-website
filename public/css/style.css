@@ -26,3 +26,13 @@ li:hover{
     background-color: #FE5F1E;
     
 }
+.cart{
+    background-color: #f8f8f8;
+}
+.login{
+    background: #f8f8f8;
+    min-height: calc(100vh - 86px);
+}
+.a{
+    color: #FE5F1E;
+}
