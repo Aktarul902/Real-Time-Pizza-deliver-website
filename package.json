@@ -14,9 +14,19 @@
   "author": "Aktarul Raj",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.6",
+    "cross-env": "^7.0.3",
+    "dotenv": "^14.3.2",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
-    "express-ejs-layouts": "^2.5.1"
+    "express-ejs-layouts": "^2.5.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.1",
+    "mongo-store": "^0.0.2",
+    "mongoose": "^6.1.8",
+    "noty": "^3.2.0-beta-deprecated"
   },
   "devDependencies": {
     "laravel-mix": "^6.0.41"
