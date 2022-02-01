@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "bcrypt": "^5.0.1",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
@@ -26,7 +27,9 @@
     "express-session": "^1.17.1",
     "mongo-store": "^0.0.2",
     "mongoose": "^6.1.8",
-    "noty": "^3.2.0-beta-deprecated"
+    "noty": "^3.2.0-beta-deprecated",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "laravel-mix": "^6.0.41"
