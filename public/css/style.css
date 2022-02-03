@@ -355,3 +355,6 @@ li:hover{
   transition: all .3s linear ;
  visibility: hidden;
 }
+.link{
+  color: #FE5F1E;
+}
