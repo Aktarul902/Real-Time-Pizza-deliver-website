@@ -10,7 +10,7 @@ const session = require('express-session')
 const flash = require('express-flash')
 const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
-// const Emitter = require('events')
+const Emitter = require('events')
 
 // Database connection
 mongoose.connect("mongodb://localhost:27017/pizzadelivary",);
@@ -27,8 +27,8 @@ let mongoStore = new MongoDbStore({
             })
 
 // Event emitter
-// const eventEmitter = new Emitter()
-// app.set('eventEmitter', eventEmitter)
+const eventEmitter = new Emitter()
+app.set('eventEmitter', eventEmitter)
 // Session config
 app.use(session({
     secret: process.env.COOKIE_SECRET,
@@ -76,23 +76,39 @@ app.use(express.json())
     // app.use((req, res) => {
         //     res.status(404).render('errors/404')
         // })
-        app.listen(PORT , () => {
+        const server = app.listen(PORT , () => {
             console.log(`Listening on port ${PORT}`)
         })
         
         // Socket
-        
-        // const io = require('socket.io')(server)
-// io.on('connection', (socket) => {
-//       // Join
-//       socket.on('join', (orderId) => {
-//         socket.join(orderId)
-//       })
-// })
+        // const io = require("socket.io")(server);
+        // io.on('connection',(socket)=>{
+        //    //join 
+        //    socket.on("join",(orderId)=>{
+        //      socket.join(orderId)
+        //    })         
+        // })
+        // eventEmitter.on('updateOrder',(data)=>{
+        //     io.to(`order_${data._id}`).emit("updatestatus",data)
 
-// eventEmitter.on('orderUpdated', (data) => {
-//     io.to(`order_${data.id}`).emit('orderUpdated', data)
-// })
+        // })
+        const io = require('socket.io')(server)
+io.on('connection', (socket) => {
+      // Join
+      socket.on('join', (orderId) => {
+          console.log(orderId)
+        socket.join(orderId)
+      })
+})
+
+
+eventEmitter.on('updateOrder', (data) => {
+    console.log(data)
+    io.to(`order_${data.orderId}`).emit('orderUpdated', data)
+})
+eventEmitter.on("newOrder",(data)=>{
+    io.to("admin").emit("orderPlaced",data)
+})
 
 // eventEmitter.on('orderPlaced', (data) => {
 //     io.to('adminRoom').emit('orderPlaced', data)

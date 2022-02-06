@@ -1,5 +1,5 @@
 
-export const initAdmin =  ()=> {
+export const initAdmin =  (socket)=> {
     const orderTableBody = document.querySelector('#orderTableBody')
     let orders = []
     let markup
@@ -37,7 +37,7 @@ export const initAdmin =  ()=> {
                 <td class="border px-4 py-2">${ order.address }</td>
                 <td class="border px-4 py-2">
                     <div class="inline-block relative w-64">
-                        <form action="/admin/order/status" method="POST">
+                        <form action="/admin/orders/status" method="post">
                             <input type="hidden" name="orderId" value="${ order._id }">
                             <select name="status" onchange="this.form.submit()"
                                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
@@ -48,7 +48,7 @@ export const initAdmin =  ()=> {
                                     Confirmed</option>
                                 <option value="prepared" ${ order.status === 'prepared' ? 'selected' : '' }>
                                     Prepared</option>
-                                <option value="delivered" ${ order.status === 'delivered' ? 'selected' : '' }>
+                                <option value="Out for delivery" ${ order.status === 'Out for delivery' ? 'selected' : '' }>
                                     Delivered
                                 </option>
                                 <option value="completed" ${ order.status === 'completed' ? 'selected' : '' }>
@@ -76,4 +76,16 @@ export const initAdmin =  ()=> {
         `
         }).join('')
     }
+    socket.on("orderPlaced",(order)=>{
+        orders.unshift(order)
+        new Noty({
+            type: 'success',
+            timeout: 1000,
+            text: "new order !",
+            progressBar: false,
+        }).show()
+        orderTableBody.innerHTML = ""
+        orderTableBody.innerHTML = generateMarkup(orders)
+
+    })
 }

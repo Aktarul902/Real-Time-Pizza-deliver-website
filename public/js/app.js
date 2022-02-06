@@ -34,6 +34,7 @@ addToCart.forEach((btn) => {
    btn.addEventListener('click', (e) => {
        let pizza = JSON.parse(btn.dataset.pizza)
        updateCart(pizza)
+     
        let noty = document.querySelector(".notification");
        noty.style.visibility="visible"
        setTimeout(() => {
@@ -42,5 +43,61 @@ addToCart.forEach((btn) => {
        }, 1000);
    })
 })
-initAdmin()
+let changestatus = document.querySelectorAll(".status_line")
+let status = document.querySelector("#hiddenInput") 
+let order = status ? status.value:null
+order = JSON.parse(order);
+let time = document.createElement('small')
+
+function updatestatus(order){
+   changestatus.forEach((status) => {
+      status.classList.remove('step-completed')
+      status.classList.remove('current')
+  })
+let stepcomplete = true;
+changestatus.forEach((status)=>{
+   
+       const propvalue = status.dataset.status
+      //  console.log(order)
+       if(stepcomplete){
+          status.classList.add("step-completed")
+       }
+      if(order.status === propvalue){
+         stepcomplete = false
+         if(status.nextElementSibling){
+            time.innerText = moment(order.updatedAt).format('hh:mm A')
+            status.appendChild(time)
+            status.nextElementSibling.classList.add("current")
+            
+         }
+      } 
+})
+
+}
+updatestatus(order)
+// socket 
+let  socket = io();
+initAdmin(socket)
+if(order){
+   socket.emit("join",`order_${order._id}`)
+
+}
+socket.on('orderUpdated', (data) => {
+   const updatedOrder = { ...order }
+   updatedOrder.updatedAt = moment().format()
+   updatedOrder.status = data.status
+   // console.log(data)
+   updatestatus(updatedOrder)
+   new Noty({
+       type: 'success',
+       timeout: 1000,
+       text: `Your order has been ${data.status}`,
+       progressBar: false,
+   }).show();
+})
+let adminArea = window.location.pathname;
+if(adminArea.includes("admin")){
+  socket.emit("join","admin")
+}
+
 

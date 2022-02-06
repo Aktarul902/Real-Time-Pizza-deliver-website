@@ -30,7 +30,8 @@
     "mongoose": "^6.1.8",
     "noty": "^3.2.0-beta-deprecated",
     "passport": "^0.5.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.4.1"
   },
   "devDependencies": {
     "laravel-mix": "^6.0.41"

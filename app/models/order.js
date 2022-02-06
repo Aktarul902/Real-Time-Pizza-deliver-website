@@ -27,7 +27,7 @@ const orderSchema= new mongoose.Schema({
    },
    status:{
        type:String,
-       default:"order placed successfully"
+       default:"order_placed"
    }
 },{timestamps:true})
 const Orders = new mongoose.model("Order",orderSchema)
