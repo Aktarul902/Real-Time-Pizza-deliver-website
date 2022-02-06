@@ -77,10 +77,9 @@ changestatus.forEach((status)=>{
 updatestatus(order)
 // socket 
 let  socket = io();
-initAdmin(socket)
 if(order){
    socket.emit("join",`order_${order._id}`)
-
+   
 }
 socket.on('orderUpdated', (data) => {
    const updatedOrder = { ...order }
@@ -97,6 +96,7 @@ socket.on('orderUpdated', (data) => {
 })
 let adminArea = window.location.pathname;
 if(adminArea.includes("admin")){
+   initAdmin(socket)
   socket.emit("join","admin")
 }
 

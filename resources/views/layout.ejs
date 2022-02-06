@@ -16,9 +16,10 @@
     <img class="my-3" src="/img/img/logo.png" alt="" srcset="">
     <ul class="flex items-center my-3">
         <li class="ml-6"><a href="/"> Home</a></li>
-        <li class="ml-6">offers</li>
         <% if(user) { %>
+            <% if(user && user.role==="customer") {%>
             <li class="ml-6"><a href="/customer/orders">My orders</a></li>
+            <% } %>
             <% if(user.role==="admin" && user) { %>
                 <li class="ml-6"><a href="/admin/orders">DashBoard</a></li>
                 <% }  %>
