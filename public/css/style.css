@@ -339,10 +339,7 @@ li:hover{
 .cart{
     background-color: #f8f8f8;
 }
-.cart:hover{
-  color: #b23301;
-  transition: all .3s linear;
-}
+
 .login{
     background: #f8f8f8;
     min-height: calc(100vh - 86px);
@@ -488,4 +485,16 @@ section.status {
   .status-box ul li span:before {
     font-size: 34px;
   }
+}
+.preloader{
+  height: 141vh;
+  width: 100vw;
+  background-color: #fff;
+  z-index: 100;
+  position: absolute;
+  /* top: 2vh; */
+}
+.loading{
+  position: relative;
+  top: 20vw;
 }

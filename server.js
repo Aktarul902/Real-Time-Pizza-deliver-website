@@ -17,6 +17,7 @@ mongoose.connect(process.env.Mongo_url,{
     useNewUrlParser:true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useUnifiedTopology:false
 });
 const connection = mongoose.connection;
 // connection.once('open', () => {
