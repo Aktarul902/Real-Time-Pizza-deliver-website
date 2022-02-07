@@ -13,7 +13,11 @@ const passport = require('passport')
 const Emitter = require('events')
 
 // Database connection
-mongoose.connect(process.env.Mongo_url);
+mongoose.connect(process.env.Mongo_url,{
+    useNewUrlParser:true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 const connection = mongoose.connection;
 // connection.once('open', () => {
 //     console.log('Database connected...');
