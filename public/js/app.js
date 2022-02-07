@@ -4,11 +4,7 @@
 // import intiadmin from "./admin"
 // import { admin } from "./admin"
 import {initAdmin}  from "./admin.js";
-function preloader(){
-   let preloader = document.querySelector(".preloader")
-   preloader.style.visibility ="hidden"
 
-}
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')

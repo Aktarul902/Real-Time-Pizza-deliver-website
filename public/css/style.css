@@ -486,6 +486,9 @@ section.status {
     font-size: 34px;
   }
 }
+.body{
+  overflow: hidden;
+}
 .preloader{
   height: 141vh;
   width: 100vw;

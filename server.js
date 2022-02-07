@@ -14,6 +14,7 @@ const Emitter = require('events')
 
 // Database connection
 mongoose.connect(process.env.Mongo_url,{
+    //  useCertificateVerification:false,
     useNewUrlParser:true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
