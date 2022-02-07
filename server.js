@@ -4,7 +4,7 @@ const app = express()
 const ejs = require('ejs')
 const path = require('path')
 const expressLayout = require('express-ejs-layouts')
-const PORT = process.env.PORT || 3000
+const port = process.env.PORT || 3000
 const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
@@ -13,7 +13,7 @@ const passport = require('passport')
 const Emitter = require('events')
 
 // Database connection
-mongoose.connect("mongodb://localhost:27017/pizzadelivary",);
+mongoose.connect(process.env.Mongo_url);
 const connection = mongoose.connection;
 // connection.once('open', () => {
 //     console.log('Database connected...');
@@ -76,8 +76,8 @@ app.use(express.json())
     // app.use((req, res) => {
         //     res.status(404).render('errors/404')
         // })
-        const server = app.listen(PORT , () => {
-            console.log(`Listening on port ${PORT}`)
+        const server = app.listen(port , () => {
+            console.log(`Listening on port ${port}`)
         })
         
         // Socket
